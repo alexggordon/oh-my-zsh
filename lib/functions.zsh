@@ -15,6 +15,24 @@ function take() {
   cd $1
 }
 
+function app() { cd $HOME/Documents/Veracross/$1*;
+  git status;
+  ls; }
+compctl -W $HOME/Documents/Veracross/ -/ app
+
+function dev() {
+  cd ~/Documents/Veracross/$1;
+  git status;
+  sublime ~/Documents/Veracross/$1;
+}
+compctl -W ~/Documents/Veracross/ -/ dev
+
+function gopen() {
+  cd ~/Documents/Veracross/$1;
+  open $(git config --get remote.origin.url | sed 's/com:/com\//;s/git\@/https\:\/\//;s/\.git//')/tree/$(git rev-parse --abbrev-ref HEAD) &> /dev/null;
+}
+compctl -W $HOME/Documents/Veracross/ -/ gopen
+
 function github-create() {
   repo_name=$1
 
@@ -71,6 +89,28 @@ function github-create() {
 function alias_value() {
     alias "$1" | sed "s/^$1='\(.*\)'$/\1/"
     test $(alias "$1")
+}
+
+function extract {
+  echo Extracting $1 ...
+  if [ -f $1 ] ; then
+      case $1 in
+          *.tar.bz2)   tar xjf $1  ;;
+          *.tar.gz)    tar xzf $1  ;;
+          *.bz2)       bunzip2 $1  ;;
+          *.rar)       unrar x $1    ;;
+          *.gz)        gunzip $1   ;;
+          *.tar)       tar xf $1   ;;
+          *.tbz2)      tar xjf $1  ;;
+          *.tgz)       tar xzf $1  ;;
+          *.zip)       unzip $1   ;;
+          *.Z)         uncompress $1  ;;
+          *.7z)        7z x $1  ;;
+          *)        echo "'$1' cannot be extracted via extract()" ;;
+      esac
+  else
+      echo "'$1' is not a valid file"
+  fi
 }
 
 #
