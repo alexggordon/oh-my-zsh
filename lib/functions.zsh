@@ -29,7 +29,7 @@ compctl -W ~/Documents/Veracross/ -/ dev
 
 function gopen() {
   cd ~/Documents/Veracross/$1;
-  open $(git config --get remote.origin.url | sed 's/com:/com\//;s/git\@/https\:\/\//;s/\.git//')/tree/$(git rev-parse --abbrev-ref HEAD) &> /dev/null;
+  open -a /Applications/Google\ Chrome.app $(git config --get remote.origin.url | sed 's/com:/com\//;s/git\@/https\:\/\//;s/\.git//')/tree/$(git rev-parse --abbrev-ref HEAD) &> /dev/null;
 }
 compctl -W $HOME/Documents/Veracross/ -/ gopen
 
