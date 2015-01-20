@@ -15,10 +15,11 @@ function take() {
   cd $1
 }
 
-function app() { cd $HOME/Documents/Veracross/$1*;
+function app() { 
+  cd ~/Documents/Veracross/$1*;
   git status;
-  ls; }
-compctl -W $HOME/Documents/Veracross/ -/ app
+}
+compctl -W ~/Documents/Veracross/ -/ app
 
 function dev() {
   cd ~/Documents/Veracross/$1;
