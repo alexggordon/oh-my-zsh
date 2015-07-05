@@ -16,23 +16,23 @@ function take() {
 }
 
 function app() {
-  cd ~/Documents/Veracross/$1;
+  cd ~/Documents/Sequoia/$1;
   git status;
 }
-compctl -W ~/Documents/Veracross/ -/ app
+compctl -W ~/Documents/Sequoia/ -/ app
 
 function dev() {
-  cd ~/Documents/Veracross/$1;
+  cd ~/Documents/Sequoia/$1;
   git status;
-  sublime ~/Documents/Veracross/$1;
+  sublime ~/Documents/Sequoia/$1;
 }
-compctl -W ~/Documents/Veracross/ -/ dev
+compctl -W ~/Documents/Sequoia/ -/ dev
 
 function gopen() {
-  cd ~/Documents/Veracross/$1;
+  cd ~/Documents/Sequoia/$1;
   open -a /Applications/Google\ Chrome.app $(git config --get remote.origin.url | sed 's/com:/com\//;s/git\@/https\:\/\//;s/\.git//')/tree/$(git rev-parse --abbrev-ref HEAD) &> /dev/null;
 }
-compctl -W $HOME/Documents/Veracross/ -/ gopen
+compctl -W $HOME/Documents/Sequoia/ -/ gopen
 
 function github-create() {
   repo_name=$1
