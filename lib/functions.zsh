@@ -65,23 +65,23 @@ function take() {
 }
 
 function app() {
-  cd ~/Documents/Sequoia/$1;
+  cd ~/Documents/Work/$1;
   git status;
 }
-compctl -W ~/Documents/Sequoia/ -/ app
+compctl -W ~/Documents/SessionM/work -/ app
 
 function dev() {
-  cd ~/Documents/Sequoia/$1;
+  cd ~/Documents/SessionM/work/$1;
   git status;
-  sublime ~/Documents/Sequoia/$1;
+  sublime ~/Documents/SessionM/work/$1;
 }
-compctl -W ~/Documents/Sequoia/ -/ dev
+compctl -W ~/Documents/SessionM/work -/ dev
 
 function gopen() {
-  cd ~/Documents/Sequoia/$1;
+  cd ~/Documents/SessionM/work/$1;
   open -a /Applications/Google\ Chrome.app $(git config --get remote.origin.url | sed 's/com:/com\//;s/git\@/https\:\/\//;s/\.git//')/tree/$(git rev-parse --abbrev-ref HEAD) &> /dev/null;
 }
-compctl -W $HOME/Documents/Sequoia/ -/ gopen
+compctl -W $HOME/Documents/SessionM/work -/ gopen
 
 function github-create() {
   repo_name=$1
