@@ -64,8 +64,12 @@ function take() {
   cd $1
 }
 
+function fast-rspec() {
+  RUBY_GC_MALLOC_LIMIT=700000000 RUBY_FREE_MIN=500000 RUBY_HEAP_MIN_SLOTS=40000 rspec $*
+}
+
 function app() {
-  cd ~/Documents/Work/$1;
+  cd ~/Documents/SessionM/Work/$1;
   git status;
 }
 compctl -W ~/Documents/SessionM/work -/ app
