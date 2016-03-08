@@ -65,7 +65,8 @@ function take() {
 }
 
 function fast-rspec() {
-  RUBY_GC_MALLOC_LIMIT=700000000 RUBY_FREE_MIN=500000 RUBY_HEAP_MIN_SLOTS=40000 rspec $*
+  RUBY_GC_MALLOC_LIMIT=700000000 RUBY_GC_HEAP_FREE_SLOTS=500000 RUBY_GC_HEAP_INIT_SLOTS=40000 rspec --format Fuubar --color $*
+
 }
 
 function app() {
@@ -82,10 +83,8 @@ function dev() {
 compctl -W ~/Documents/SessionM/work -/ dev
 
 function gopen() {
-  cd ~/Documents/SessionM/work/$1;
-  open -a /Applications/Google\ Chrome.app $(git config --get remote.origin.url | sed 's/com:/com\//;s/git\@/https\:\/\//;s/\.git//')/tree/$(git rev-parse --abbrev-ref HEAD) &> /dev/null;
+  open -a /Applications/Google\ Chrome.app $(echo "https://stash.o.sessionm.com/projects/PLAT/repos/greyhound/compare/commits?sourceBranch=refs%2Fheads%2F")$(git rev-parse --abbrev-ref HEAD) &> /dev/null;
 }
-compctl -W $HOME/Documents/SessionM/work -/ gopen
 
 function github-create() {
   repo_name=$1
