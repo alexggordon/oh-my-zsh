@@ -2,6 +2,14 @@ function zsh_stats() {
   fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n20
 }
 
+function hop() {
+  clensed=`echo $1 | tr  "-"  "."`
+  ssh -A -t $(whoami)@admin01.iad.sessionm.com ssh -A $(whoami)@$clensed
+}
+
+function gsubl() {
+  subl $(git diff --name-only HEAD | tr '\n' ' ')
+}
 
 function transfer() {
     # check arguments
@@ -82,8 +90,16 @@ function dev() {
 }
 compctl -W ~/Documents/SessionM/work -/ dev
 
-function gopen() {
-  open -a /Applications/Google\ Chrome.app $(echo "https://stash.o.sessionm.com/projects/PLAT/repos/greyhound/compare/commits?sourceBranch=refs%2Fheads%2F")$(git rev-parse --abbrev-ref HEAD) &> /dev/null;
+function stash() {
+  if [[ $1 = "-p" ]]; then
+    if [[ $2 -eq 0 ]]; then
+      open -a /Applications/Google\ Chrome.app $(echo "https://stash.o.sessionm.com/projects/PLAT/repos/greyhound/pull-requests?create&targetBranch=refs%2Fheads%2Fmaster&sourceBranch=refs%2Fheads%2F")$(git rev-parse --abbrev-ref HEAD) &> /dev/null;
+    else
+      open -a /Applications/Google\ Chrome.app $(echo "https://stash.o.sessionm.com/projects/PLAT/repos/greyhound/pull-requests?create&targetBranch=refs%2Fheads%2Fmaster&sourceBranch=refs%2Fheads%2F$2") &> /dev/null;
+    fi
+  else
+    open -a /Applications/Google\ Chrome.app $(echo "https://stash.o.sessionm.com/projects/PLAT/repos/greyhound/compare/commits?sourceBranch=refs%2Fheads%2F")$(git rev-parse --abbrev-ref HEAD) &> /dev/null;
+  fi
 }
 
 function github-create() {
