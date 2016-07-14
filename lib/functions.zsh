@@ -3,8 +3,8 @@ function zsh_stats() {
 }
 
 function hop() {
-  clensed=`echo $1 | tr  "-"  "."`
-  ssh -A -t $(whoami)@admin01.iad.sessionm.com ssh -A $(whoami)@$clensed
+  cleansed=`echo $1 | tr  "-"  "."`
+  ssh -A -t $(whoami)@admin01.iad.sessionm.com ssh -A $(whoami)@$cleansed
 }
 
 function gsubl() {
