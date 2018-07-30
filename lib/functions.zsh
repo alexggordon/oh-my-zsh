@@ -7,6 +7,16 @@ function hopa() {
   ssh -A -t $(whoami)@admin01.iad.sessionm.com ssh -A $(whoami)@$cleansed
 }
 
+function hopie() {
+  cleansed=`echo $1 | tr  "-"  "."`
+  ssh -A -t $(whoami)@jump.ent-ie.local ssh -A $(whoami)@$cleansed
+}
+
+function hopsg() {
+  cleansed=`echo $1 | tr  "-"  "."`
+  ssh -A -t $(whoami)@jump.ent-sg.local ssh -A $(whoami)@$cleansed
+}
+
 function hop() {
   cleansed=`echo $1 | tr  "-"  "."`
   ssh -A -t $(whoami)@jump.sessionm.local ssh -A $(whoami)@$cleansed
